@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: the toggle puts `.dark` on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-ink-900: #0b1220;
+  --color-ink-800: #111a2b;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: #f5f7fa;
+  color: #0f172a;
+}
+
+/* Slim scrollbars so tables and the sidebar stay tidy. */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ------------------------------------------------------------------ dark mode
+   The pages are written with light utilities. Rather than touch every screen,
+   `.dark` remaps that small set of surface/text/border utilities - one extra
+   class beats the utility on specificity, so nothing else has to change. */
+
+.dark {
+  --surface: #111a2b;
+  --surface-2: #0d1626;
+  --surface-3: #1b2537;
+  --line: #1f2b3f;
+  --ink-1: #e8eef7;
+  --ink-2: #c3d0e0;
+  --ink-3: #97a5b8;
+  --ink-4: #6d7c91;
+  color-scheme: dark;
+}
+
+.dark body {
+  background: #0b1220;
+  color: var(--ink-2);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #2b3a52;
+}
+
+/* surfaces */
+.dark .bg-white {
+  background-color: var(--surface);
+}
+.dark .bg-white\/85 {
+  background-color: color-mix(in srgb, var(--surface) 85%, transparent);
+}
+.dark .bg-slate-50,
+.dark .bg-slate-50\/70,
+.dark .bg-slate-50\/80,
+.dark .bg-slate-100 {
+  background-color: var(--surface-3);
+}
+.dark .bg-slate-900 {
+  background-color: #33415a;
+}
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-slate-50\/70:hover {
+  background-color: var(--surface-3);
+}
+.dark .hover\:bg-slate-800:hover {
+  background-color: #3d4c66;
+}
+
+/* text */
+.dark .text-slate-900,
+.dark .text-slate-800 {
+  color: var(--ink-1);
+}
+.dark .text-slate-700,
+.dark .text-slate-600 {
+  color: var(--ink-2);
+}
+.dark .text-slate-500 {
+  color: var(--ink-3);
+}
+.dark .text-slate-400 {
+  color: var(--ink-4);
+}
+.dark .placeholder\:text-slate-400::placeholder {
+  color: var(--ink-4);
+}
+.dark .hover\:text-slate-900:hover {
+  color: var(--ink-1);
+}
+
+/* lines, rings, dividers */
+.dark .border-slate-200,
+.dark .border-slate-200\/80,
+.dark .border-slate-100 {
+  border-color: var(--line);
+}
+.dark .divide-slate-100 > * {
+  border-color: var(--line);
+}
+.dark .ring-slate-200 {
+  --tw-ring-color: var(--line);
+}
+
+/* chart gridlines are inline SVG attributes */
+.dark svg line[stroke="#eef2f6"] {
+  stroke: var(--line);
+}
+
